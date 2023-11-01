@@ -21,7 +21,7 @@ const Header = () => {
         ></Image>
       </div>
       {/* middle side */}
-      <div className="relative">
+      <div className="relative mt-1">
         <div className="absolute top-2 left-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
