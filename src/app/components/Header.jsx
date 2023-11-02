@@ -78,9 +78,9 @@ const Header = () => {
           <div className="cursor-pointer h-16 w-16 relative">
             <Image
               layout="fill"
-              className="object-contain"
+              className="object-contain rounded-full p-3"
               alt="User profile image"
-              src="https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg?w=360"
+              src="https://i.pravatar.cc/150?img=2"
             ></Image>
           </div>
         </div>
