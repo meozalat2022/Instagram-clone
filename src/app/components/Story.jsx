@@ -2,11 +2,16 @@ import Image from "next/image";
 import React from "react";
 
 const Story = ({ img, username }) => {
-  console.log("1111111111111111111", img);
   return (
     <div>
-      <Image alt="image" width={75} height={85} src={img}></Image>
-      <p>{username}</p>
+      <Image
+        className="border-red-600 border-2 h-14 rounded-full p-[1.5px] hover:scale-110 transition-transform duration-200 ease-out cursor-pointer"
+        alt="image"
+        width={75}
+        height={75}
+        src={img}
+      ></Image>
+      <p className="text-xs w-14 truncate">{username}</p>
     </div>
   );
 };
