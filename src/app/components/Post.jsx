@@ -8,7 +8,7 @@ const Post = ({ key, id, userImage, username, img, caption }) => {
 
       <div className="flex items-center ">
         <Image
-          className="h-[75px] w-[75px] rounded-full object-cover border p-1 mr-3"
+          className="h-[75px] w-[75px] rounded-full object-cover border p-1 m-3"
           width={75}
           height={75}
           src={userImage}
@@ -22,7 +22,7 @@ const Post = ({ key, id, userImage, username, img, caption }) => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-5 h-5"
+          className="w-5 h-5 m-3"
         >
           <path
             strokeLinecap="round"
