@@ -1,8 +1,11 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import { useRecoilState } from "recoil";
+import { modalState } from "../../../atom/modalAtomState";
 import { signIn, signOut, useSession } from "next-auth/react";
 const Header = () => {
+  const [open, setOpen] = useRecoilState(modalState);
   const { data } = useSession();
   return (
     <div className="shadow-sm border-b sticky top-0 bg-white">
@@ -66,12 +69,13 @@ const Header = () => {
               />
             </svg>
             <svg
+              onClick={() => setOpen(true)}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6 cursor-pointer hover:scale-125 transition-transform duration-200 ease-out ml-2"
+              className=" w-6 h-6 cursor-pointer hover:scale-125 transition-transform duration-200 ease-out ml-2"
             >
               <path
                 strokeLinecap="round"

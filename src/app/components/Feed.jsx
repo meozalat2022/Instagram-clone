@@ -5,6 +5,7 @@ import Posts from "./Posts";
 import MiniProfile from "./MiniProfile";
 import Suggestions from "./Suggestions";
 import { useSession } from "next-auth/react";
+import UplodModal from "./UplodModal";
 const Feed = () => {
   const { data: session } = useSession();
   return (
@@ -30,6 +31,7 @@ const Feed = () => {
           <Suggestions />
         </div>
       </section>
+      <UplodModal />
     </main>
   );
 };

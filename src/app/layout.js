@@ -1,9 +1,9 @@
 import Feed from "./components/Feed";
 import Header from "./components/Header";
 import Providers from "./components/Providers";
+import RecoilRoots from "./components/RecoilRoots";
 import "./globals.css";
 import { Inter } from "next/font/google";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -16,9 +16,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Providers>
-          <Header />
-          <Feed />
-          {children}
+          <RecoilRoots>
+            <Header />
+            <Feed />
+            {children}
+          </RecoilRoots>
         </Providers>
       </body>
     </html>
