@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
         <Providers>
           <RecoilRoots>
             <Header />
-            <Feed />
+
             {children}
           </RecoilRoots>
         </Providers>
