@@ -4,10 +4,13 @@ import { useSession } from "next-auth/react";
 import {
   addDoc,
   collection,
+  deleteDoc,
+  doc,
   onSnapshot,
   orderBy,
   query,
   serverTimestamp,
+  setDoc,
 } from "firebase/firestore";
 import { db } from "../../../firebase";
 import Moment from "react-moment";
@@ -15,6 +18,8 @@ const Post = ({ key, id, userImage, username, img, caption }) => {
   const { data: session } = useSession();
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
+  const [likes, setLikes] = useState([]);
+  const [hasLike, setHasLike] = useState(false);
   const sendComment = async (event) => {
     event.preventDefault();
     const commentToSend = comment;
@@ -39,6 +44,25 @@ const Post = ({ key, id, userImage, username, img, caption }) => {
     );
     return unsubscribe;
   }, [db, id]);
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      collection(db, "posts", id, "likes"),
+      (snapshot) => setLikes(snapshot.docs)
+    );
+  }, [db]);
+
+  useEffect(() => {
+    setHasLike(likes.findIndex((like) => like.id === session?.user.uid) !== -1);
+  }, [db, likes]);
+  const likePost = async () => {
+    if (hasLike) {
+      await deleteDoc(doc(db, "posts", id, "likes", session.user.uid));
+    } else {
+      await setDoc(doc(db, "posts", id, "likes", session.user.uid), {
+        username: session.user.username,
+      });
+    }
+  };
   return (
     <div className="bg-white my-7 border rounded-md">
       {/* post header */}
@@ -76,11 +100,12 @@ const Post = ({ key, id, userImage, username, img, caption }) => {
         <div className="flex justify-between px-4 pt-4 mb-1">
           <div className="flex space-x-4">
             <svg
+              onClick={likePost}
               xmlns="http://www.w3.org/2000/svg"
-              fill="none"
+              fill={`${hasLike ? "red" : "none"}`}
               viewBox="0 0 24 24"
               strokeWidth={1.5}
-              stroke="currentColor"
+              stroke="currentcolor"
               className="w-7 h-7 hover:scale-125 transition-transform duration-200 ease-out cursor-pointer"
             >
               <path
