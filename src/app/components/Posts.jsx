@@ -14,7 +14,7 @@ const Posts = () => {
       }
     );
     return onSubscribe;
-  }, []);
+  }, [db]);
   // const posts = [
   //   {
   //     id: "1",
